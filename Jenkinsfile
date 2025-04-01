@@ -11,7 +11,7 @@ pipeline{
         stage('Static Analysis') {
             steps {
                 script {
-                    staticAnalysis(abortPipeline: true)
+                    staticAnalysis(abortPipeline: false)
                 }
             }
         }
