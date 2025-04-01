@@ -1,5 +1,5 @@
 def call (boolean abortPipeline = false) {
-    pipeline{
+    pipeline {
         agent any
         environment {
             SONAR_ENV = "sonar"
@@ -13,12 +13,9 @@ def call (boolean abortPipeline = false) {
                             sh 'echo "Running SonarQube analysis..."'
                         }
                         echo "SonarQube analysis completed."
-                        
                     }
                 }
             }
-        }
-        stages {
             stage('Quality Gate') {
                 steps {
                     script {
@@ -30,7 +27,6 @@ def call (boolean abortPipeline = false) {
                         }
                     }
                 }
-
             }
         }
     }
