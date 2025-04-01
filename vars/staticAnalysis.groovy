@@ -1,4 +1,4 @@
-def call (boolean abortPipeline = false) {
+def call(boolean abortPipeline = false) {
     pipeline {
         agent any
         environment {
