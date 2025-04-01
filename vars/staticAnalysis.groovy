@@ -1,7 +1,7 @@
 def call (boolean abortPipeline = false) {
     pipeline{
         agent any
-        enviroment {
+        environment {
             SONAR_ENV = "sonar"
         }
         stages {
@@ -10,7 +10,7 @@ def call (boolean abortPipeline = false) {
                     script {
                         echo "Running static analysis..."
                         timeout(time: 5, unit: 'MINUTES') {
-                            sh echo "Running SonarQube analysis..."
+                            sh 'echo "Running SonarQube analysis..."'
                         }
                         echo "SonarQube analysis completed."
                         
