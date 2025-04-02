@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/tu-repo.git'
+                git 'https://github.com/ALBCAB03/alberto_caballero_libreria.git'
             }
         }
         
