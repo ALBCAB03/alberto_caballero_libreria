@@ -1,29 +1,25 @@
-def call(boolean abortPipeline = false) {
+def call(boolean qualityGateAbort = false, boolean abortPipeline = false) {
     pipeline {
         agent any
-        environment {
-            SONAR_ENV = "sonar"
-        }
         stages {
-            stage('Static Analysis') {
+            stage('Static Code Analysis') {
                 steps {
                     script {
-                        echo "Running static analysis..."
-                        timeout(time: 5, unit: 'MINUTES') {
-                            echo "Running SonarQube analysis..."
+                        try {
+                            timeout(time: 5, unit: 'MINUTES') {
+                                withEnv(['SONAR_ENV=dummy']) {
+                                    sh 'echo "Ejecución de las pruebas de calidad de código"'
+                                }
+                            }
+                        } catch (Exception e) {
+                            echo "Error: Tiempo de espera excedido en el análisis de código"
+                            if (qualityGateAbort) {
+                                error("Pipeline abortado debido al Quality Gate")
+                            }
                         }
-                        echo "SonarQube analysis completed."
-                    }
-                }
-            }
-            stage('Quality Gate') {
-                steps {
-                    script {
+
                         if (abortPipeline) {
-                            echo "Quality gate failed. Aborting pipeline."
-                            error("Quality gate failed.")
-                        } else {
-                            echo "Quality gate passed. Proceeding with the pipeline."
+                            error("Pipeline abortado según el parámetro abortPipeline")
                         }
                     }
                 }
