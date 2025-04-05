@@ -13,7 +13,7 @@ def call(boolean abortPipeline = false, boolean abortOnQualityGate = false) {
     if(abortOnQualityGate) {
         shouldAbort = (qualityGateResult != "OK")
     } else {
-        if (branch == 'master' || branch.startsWith('hotfix')){
+        if (branchName == 'master' || branchName.startsWith('hotfix')){
             shouldAbort = (qualityGateResult != "OK")
         }
     }
