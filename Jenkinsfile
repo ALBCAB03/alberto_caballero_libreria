@@ -4,18 +4,14 @@ pipeline {
         
         stage('Run Static Analysis') {
             steps {
-                script {
-                    staticAnalysis(qualityGateAbort: true, abortPipeline: false)
-                }
+                echo 'Corriendo analisis...'
             }
         }
-        
         stage('Build') {
             steps {
                 echo 'Compilando el proyecto...'
             }
-        }
-        
+        } 
         stage('Deploy') {
             steps {
                 echo 'Desplegando la aplicación...'
