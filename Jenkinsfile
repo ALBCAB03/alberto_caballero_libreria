@@ -1,6 +1,9 @@
 @Library('threepoints-sharedlib') _
 pipeline {
     agent any
+    environment {
+        BRANCH_NAME = 'master'
+    }
     stages {
         
         stage('Run Static Analysis') {
