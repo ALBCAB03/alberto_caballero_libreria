@@ -1,3 +1,4 @@
+@Library('threepoints-sharedlib')
 def call(boolean qualityGateAbort = false, boolean abortPipeline = false) {
     pipeline {
         agent any

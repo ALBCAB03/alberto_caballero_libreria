@@ -1,4 +1,3 @@
-@Library('threepoints-sharedlib') _
 pipeline {
     agent any
     stages {
