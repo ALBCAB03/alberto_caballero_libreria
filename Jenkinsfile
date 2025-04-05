@@ -1,3 +1,4 @@
+@Library('threepoints-sharedlib') _
 pipeline {
     agent any
     stages {
@@ -5,7 +6,7 @@ pipeline {
         stage('Run Static Analysis') {
             steps {
                 script {
-                    staticAnalysis(qualityGateAbort: false, abortPipeline: false)
+                    staticAnalysis()
                 }
             }
         }
