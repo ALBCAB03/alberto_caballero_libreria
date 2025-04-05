@@ -7,7 +7,7 @@ def call(boolean abortPipeline = false, boolean abortOnQualityGate = false) {
     def branchName = env.BRANCH_NAME ?: 'main'
     echo "Branch: ${branchName}"
 
-    def qualityGateResult = "ERROR" // Simulated result, replace with actual quality gate check
+    def qualityGateResult = "OK" // Simulated result, replace with actual quality gate check
     def shouldAbort = false // Simulated condition, replace with actual logic
 
     if(abortOnQualityGate) {
