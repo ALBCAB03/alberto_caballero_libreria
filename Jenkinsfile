@@ -4,7 +4,9 @@ pipeline {
         
         stage('Run Static Analysis') {
             steps {
-                echo 'Corriendo analisis...'
+                script {
+                    staticAnalysis(qualityGateAbort: false, abortPipeline: false)
+                }
             }
         }
         stage('Build') {

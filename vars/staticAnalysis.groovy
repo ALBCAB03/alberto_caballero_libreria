@@ -7,11 +7,7 @@ def call(boolean qualityGateAbort = false, boolean abortPipeline = false) {
                 steps {
                     script {
                         try {
-                            timeout(time: 5, unit: 'MINUTES') {
-                                withEnv(['SONAR_ENV=dummy']) {
-                                    sh 'echo "Ejecución de las pruebas de calidad de código"'
-                                }
-                            }
+                            echo "Analisis de código estático en curso..."
                         } catch (Exception e) {
                             echo "Error: Tiempo de espera excedido en el análisis de código"
                             if (qualityGateAbort) {
