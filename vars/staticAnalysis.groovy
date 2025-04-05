@@ -4,7 +4,7 @@ def call(boolean abortPipeline = false, boolean abortOnQualityGate = false) {
             sh 'echo "Static analysis started"'
         }
     }
-    def branch = env.BRANCH_NAME ?: 'master'
+    def branchName = env.BRANCH_NAME ?: 'master'
     echo "Branch: ${branchName}"
 
     def qualityGateResult = "ERROR" // Simulated result, replace with actual quality gate check
@@ -17,7 +17,7 @@ def call(boolean abortPipeline = false, boolean abortOnQualityGate = false) {
             shouldAbort = (qualityGateResult != "OK")
         }
     }
-    
+
     if (shouldAbort) {
         echo "Static analysis failed. Quality gate result: ${qualityGateResult}"
         if (abortOnQualityGate) {
