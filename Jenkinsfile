@@ -3,6 +3,9 @@ pipeline {
     agent any
     environment {
         BRANCH_NAME = 'main'
+        SONAR_PROJECT_KEY = 'devops_ws'
+        SONAR_PROJECT_NAME = 'devops_ws'
+        SONAR_HOST_URL = 'http://localhost:9000'
     }
     stages {
         

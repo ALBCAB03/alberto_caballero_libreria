@@ -1,7 +1,13 @@
 def call(boolean abortPipeline = false, boolean abortOnQualityGate = false) {
     timeout(time: 10, unit: 'MINUTES') {
-        withEnv(["sonarenv=simulated_value"]){
-            sh 'echo "Static analysis started"'
+        withSonarQubeEnv('Sonar Local'){
+            withCredentials([string(credentialsId: 'sonar-token', variable: 'SONNARQUBE_TOKEN')]){
+                sh """${scannerHome}/bin/sonar-scanner \
+                -Dsonar.projectKey=devops_ws \
+                -Dsonar.sources=src \
+                -Dsonar.host.url=http://localhost:9000 \
+                -Dsonar.login=${SONNARQUBE_TOKEN}"""
+            }
         }
     }
     def branchName = env.BRANCH_NAME ?: 'main'
